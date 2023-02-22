@@ -2,12 +2,12 @@ package com.retail_food_stores.ws.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -17,9 +17,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Store {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private UUID id;
 
     @Column(name = "COUNTY")
