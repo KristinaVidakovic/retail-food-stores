@@ -9,9 +9,11 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.data.domain.Pageable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +46,12 @@ public class StoreServiceImpl implements StoreService {
             log.error("Fail to store data");
             throw new RuntimeException("Fail to store data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public Page<Store> filter(String filter, Pageable pageable) {
+        log.info("Called method for getting stores by filter");
+        return storeRepository.findByEntityNameContainingOrStreetNameContaining(filter, filter, pageable);
     }
 
     private List<Store> loadData(InputStream inputStream) {
