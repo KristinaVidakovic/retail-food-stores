@@ -60,32 +60,29 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> nearest(Double longitude, Double latitude) {
-        List<Store> items = storeRepository.findAll();
+    public List<Store> nearest(Double longitude, Double latitude, Integer numberOfStores) {
+        log.info("Called method for getting nearest stores");
+        List<Store> stores = storeRepository.findAll();
         Set<String> insertedKeys = new HashSet<>();
         KDTree kdTree = new KDTree(2, 1000L);
-
-        for (Store location : items) {
-            if (location.getLongitude() == null || location.getLatitude() == null) {
-                continue;
-            }
-            double[] point = { location.getLongitude(), location.getLatitude() };
+        stores.stream().filter(i -> i.getLatitude() != null && i.getLongitude() != null).forEach(i -> {
+            double[] point = { i.getLongitude(), i.getLatitude() };
             String key = point[0] + "," + point[1];
 
             if (!insertedKeys.contains(key)) {
                 try {
-                    kdTree.insert(point, location);
+                    kdTree.insert(point, i);
                 } catch (KeySizeException | KeyDuplicateException e) {
                     throw new RuntimeException(e);
                 }
                 insertedKeys.add(key);
             }
-        }
+        });
+
         double[] query = { longitude, latitude };
-        int k = 10;
         List<Store> neighbors = new ArrayList<>();
         try {
-             neighbors = kdTree.nearest(query, k);
+             neighbors = kdTree.nearest(query, numberOfStores);
         } catch (KeySizeException e) {
             throw new RuntimeException(e);
         }
@@ -105,7 +102,7 @@ public class StoreServiceImpl implements StoreService {
             throw new RuntimeException(e);
         }
 
-        List<Store> data = new ArrayList<Store>();
+        List<Store> data = new ArrayList<>();
 
         Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 

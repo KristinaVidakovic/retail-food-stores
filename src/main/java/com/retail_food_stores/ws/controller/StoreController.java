@@ -2,8 +2,10 @@ package com.retail_food_stores.ws.controller;
 
 import com.retail_food_stores.ws.model.Store;
 import com.retail_food_stores.ws.service.StoreService;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +36,23 @@ public class StoreController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<Page<Store>> filter (@RequestParam String filter, Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(storeService.filter(filter, pageable));
+    public ResponseEntity<Page<Store>> filter (@RequestParam String filter,
+                                               @ParameterObject @PageableDefault(size = 20, page = 1) Pageable pageable) {
+        Page<Store> stores = storeService.filter(filter, pageable);
+        if (stores.hasContent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(stores);
+        } else {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
     }
 
 
     @GetMapping("/nearest")
-    public ResponseEntity<List<Store>> getNearestLocation(@RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude) {
-        return ResponseEntity.status(HttpStatus.OK).body(storeService.nearest(longitude, latitude));
+    public ResponseEntity<List<Store>> getNearestLocation(@RequestParam("longitude") Double longitude,
+                                                          @RequestParam("latitude") Double latitude,
+                                                          @RequestParam("numberOfStores") Integer numberOfStores) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(storeService.nearest(longitude, latitude, numberOfStores));
 
     }
 

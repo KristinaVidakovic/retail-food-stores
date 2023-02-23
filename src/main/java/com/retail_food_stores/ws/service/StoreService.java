@@ -14,6 +14,6 @@ public interface StoreService {
 
     Page<Store> filter(String filter, Pageable pageable);
 
-    List<Store> nearest(Double longitude, Double latitude);
+    List<Store> nearest(Double longitude, Double latitude, Integer numberOfStores);
 
 }
