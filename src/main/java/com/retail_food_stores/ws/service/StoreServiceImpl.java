@@ -3,6 +3,7 @@ package com.retail_food_stores.ws.service;
 import com.harium.storage.kdtree.KDTree;
 import com.harium.storage.kdtree.KeyDuplicateException;
 import com.harium.storage.kdtree.KeySizeException;
+import com.retail_food_stores.ws.exceptions.UnsupportedFileException;
 import com.retail_food_stores.ws.model.EstablishmentType;
 import com.retail_food_stores.ws.model.Store;
 import com.retail_food_stores.ws.repository.StoreRepository;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.data.domain.Pageable;
@@ -42,6 +44,11 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public void save(MultipartFile csvFile) {
         log.info("Called method for saving all data from file");
+        if (!StringUtils.getFilenameExtension(csvFile.getOriginalFilename()).equals("csv")) {
+            log.error("Unsupported file provided!");
+            throw new UnsupportedFileException();
+        }
+
         try {
             List<Store> data = loadData(csvFile.getInputStream());
             log.info("Loaded data from file");
@@ -62,10 +69,10 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<Store> nearest(Double longitude, Double latitude, Integer numberOfStores) {
         log.info("Called method for getting nearest stores");
-        List<Store> stores = storeRepository.findAll();
+        List<Store> stores = storeRepository.findByLongitudeNotNullAndLatitudeNotNull();
         Set<String> insertedKeys = new HashSet<>();
         KDTree kdTree = new KDTree(2, 1000L);
-        stores.stream().filter(i -> i.getLatitude() != null && i.getLongitude() != null).forEach(i -> {
+        stores.forEach(i -> {
             double[] point = { i.getLongitude(), i.getLatitude() };
             String key = point[0] + "," + point[1];
 
@@ -132,12 +139,9 @@ public class StoreServiceImpl implements StoreService {
                     longitude != null && !longitude.equals("") ?
                             Double.parseDouble(longitude):null
             );
-
             data.add(store);
         }
-
         return data;
-
     }
 
 }

@@ -1,0 +1,470 @@
+{
+	"info": {
+		"_postman_id": "fbcf49a8-a339-4071-85f8-9d1a6ee736aa",
+		"name": "Stores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14878902"
+	},
+	"item": [
+		{
+			"name": "Load and save data from csv file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csvFile",
+							"type": "file",
+							"src": "/Users/vidakovic/Desktop/Retail Food Stores in New York City (1).csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8090/retail-food-stores/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"retail-food-stores",
+						"upload"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - Successfully loaded data",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "csvFile",
+									"type": "file",
+									"src": "/Users/vidakovic/Desktop/Retail Food Stores in New York City (1).csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"upload"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 21:17:31 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": \"OK\",\n    \"message\": \"Successfully loaded data\"\n}"
+				},
+				{
+					"name": "400 - Unsupported file",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "csvFile",
+									"type": "file",
+									"src": "/Users/vidakovic/Desktop/Kristina's CV.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"upload"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 21:18:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unsupported file provided! You need to provide CSV file!\",\n    \"suppressed\": [],\n    \"localizedMessage\": \"Unsupported file provided! You need to provide CSV file!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/retail-food-stores/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"retail-food-stores",
+						"health"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Health check",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/vnd.spring-boot.actuator.v3+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Feb 2023 21:09:44 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"UP\",\n    \"components\": {\n        \"db\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"database\": \"PostgreSQL\",\n                \"validationQuery\": \"isValid()\"\n            }\n        },\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 245107195904,\n                \"free\": 126611951616,\n                \"threshold\": 10485760,\n                \"exists\": true\n            }\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get by filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/retail-food-stores/filter?page=1&size=10&sort=asc&filter=CORP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"retail-food-stores",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "asc"
+						},
+						{
+							"key": "filter",
+							"value": "CORP"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - Successfully returned data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/filter?page=1&size=10&sort=asc&filter=CORP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "asc"
+								},
+								{
+									"key": "filter",
+									"value": "CORP"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 21:20:35 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": \"90f44efc-1a59-45b5-a4d2-3bd8d89a9756\",\n            \"county\": \"Rockland\",\n            \"licenseNumber\": 395812,\n            \"establishmentType\": \"A\",\n            \"entityName\": \"MINTYS CORP\",\n            \"dbaName\": \"STONYS FOOD N NEWS\",\n            \"streetNumber\": \"1\",\n            \"streetName\": \"STONY RIDGE PLZ RT 9W\",\n            \"city\": \"STONY POINT\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 10980,\n            \"squareFootage\": 2600,\n            \"latitude\": null,\n            \"longitude\": null\n        },\n        {\n            \"id\": \"993c58c8-0480-4fcb-8eec-54692e522434\",\n            \"county\": \"Suffolk\",\n            \"licenseNumber\": 714372,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"JAK DELI CORP\",\n            \"dbaName\": \"JAK DELI\",\n            \"streetNumber\": \"305\",\n            \"streetName\": \"MONTAWK HWY\",\n            \"city\": \"SPEONK\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 11972,\n            \"squareFootage\": 2000,\n            \"latitude\": -72.70564,\n            \"longitude\": 40.819483\n        },\n        {\n            \"id\": \"0cdb159b-e7c2-4f45-a937-4d4cc901773d\",\n            \"county\": \"Suffolk\",\n            \"licenseNumber\": 725395,\n            \"establishmentType\": \"A\",\n            \"entityName\": \"EMINE-ANA CORP\",\n            \"dbaName\": \"THE TURKISH PISTACHIO\",\n            \"streetNumber\": \"2026\",\n            \"streetName\": \"MEDFORD AVE\",\n            \"city\": \"MEDFORD\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 11763,\n            \"squareFootage\": 1700,\n            \"latitude\": -73.002551,\n            \"longitude\": 40.808518\n        },\n        {\n            \"id\": \"e9e5ff3b-aede-4378-96a1-066e3293032b\",\n            \"county\": \"Ulster\",\n            \"licenseNumber\": 515566,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"STEWARTS SHOPS CORP\",\n            \"dbaName\": \"STEWARTS SHOP 273\",\n            \"streetNumber\": \"356\",\n            \"streetName\": \"RT 212\",\n            \"city\": \"SAUGERTIES\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 12477,\n            \"squareFootage\": 1500,\n            \"latitude\": null,\n            \"longitude\": null\n        },\n        {\n            \"id\": \"20ca64e4-9ee2-4623-8831-fc5c822cae5f\",\n            \"county\": \"Westchester\",\n            \"licenseNumber\": 556276,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"G&S CORP\",\n            \"dbaName\": \"DECICCO & SONS\",\n            \"streetNumber\": \"43\",\n            \"streetName\": \"5TH AVE\",\n            \"city\": \"PELHAM\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 10803,\n            \"squareFootage\": 14500,\n            \"latitude\": -73.809332,\n            \"longitude\": 40.911988\n        },\n        {\n            \"id\": \"9758108f-0554-41a2-8953-ffeb2ac36a5b\",\n            \"county\": \"Bronx\",\n            \"licenseNumber\": 733263,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"SAZIA CORPORATION\",\n            \"dbaName\": \"ZK BAKERY\",\n            \"streetNumber\": \"1567\",\n            \"streetName\": \"SAINT PETERS AVE\",\n            \"city\": \"BRONX\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 10461,\n            \"squareFootage\": 1000,\n            \"latitude\": -73.847724,\n            \"longitude\": 40.840643\n        },\n        {\n            \"id\": \"ccd77508-45c7-4bad-babb-fbe27a81eafc\",\n            \"county\": \"Bronx\",\n            \"licenseNumber\": 750853,\n            \"establishmentType\": \"A\",\n            \"entityName\": \"BUYK CORP\",\n            \"dbaName\": \"BUYK\",\n            \"streetNumber\": \"190\",\n            \"streetName\": \"W 231ST ST\",\n            \"city\": \"BRONX\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 10463,\n            \"squareFootage\": 0,\n            \"latitude\": -73.904286,\n            \"longitude\": 40.878728\n        },\n        {\n            \"id\": \"dde50e43-a3b6-4915-8661-47cd7abd1099\",\n            \"county\": \"Bronx\",\n            \"licenseNumber\": 606498,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"LITTLE TWINS CORP\",\n            \"dbaName\": \"LITTLE TWINS\",\n            \"streetNumber\": \"301\",\n            \"streetName\": \"E 194TH ST\",\n            \"city\": \"BRONX\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 10458,\n            \"squareFootage\": 1300,\n            \"latitude\": -73.891984,\n            \"longitude\": 40.864544\n        },\n        {\n            \"id\": \"29a200ec-f5c7-4c12-ac27-9d56d49978ea\",\n            \"county\": \"Kings\",\n            \"licenseNumber\": 619148,\n            \"establishmentType\": \"JAC\",\n            \"entityName\": \"WY FOOD CORP\",\n            \"dbaName\": \"WY FOOD\",\n            \"streetNumber\": \"270\",\n            \"streetName\": \"5TH AVE\",\n            \"city\": \"BROOKLYN\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 11215,\n            \"squareFootage\": 1500,\n            \"latitude\": -73.981847,\n            \"longitude\": 40.674509\n        },\n        {\n            \"id\": \"c0ac5b35-24e6-46c2-8f33-d0a967462980\",\n            \"county\": \"Kings\",\n            \"licenseNumber\": 711380,\n            \"establishmentType\": \"A\",\n            \"entityName\": \"KISI CORP\",\n            \"dbaName\": \"HEALTH CHOICE PHARMACY\",\n            \"streetNumber\": \"3735\",\n            \"streetName\": \"NOSTRAND AVE\",\n            \"city\": \"BROOKLYN\",\n            \"stateAbbreviation\": \"NY\",\n            \"zipCode\": 11235,\n            \"squareFootage\": 1600,\n            \"latitude\": null,\n            \"longitude\": null\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": false,\n            \"unsorted\": true,\n            \"empty\": true\n        },\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalPages\": 689,\n    \"totalElements\": 6881,\n    \"first\": true,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"sorted\": false,\n        \"unsorted\": true,\n        \"empty\": true\n    },\n    \"numberOfElements\": 10,\n    \"empty\": false\n}"
+				},
+				{
+					"name": "201 - No data found by provided filter",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/filter?page=1&size=10&sort=asc&filter=CORPNNNN",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "asc"
+								},
+								{
+									"key": "filter",
+									"value": "CORPNNNN"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 21:21:41 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Get n nearest stores by longitude and latitude",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/retail-food-stores/nearest?longitude=40.703090&latitude=-73.592870&numberOfStores=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"retail-food-stores",
+						"nearest"
+					],
+					"query": [
+						{
+							"key": "longitude",
+							"value": "40.703090"
+						},
+						{
+							"key": "latitude",
+							"value": "-73.592870"
+						},
+						{
+							"key": "numberOfStores",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - Successfully returned data",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/retail-food-stores/nearest?longitude=40.703090&latitude=-73.592870&numberOfStores=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"retail-food-stores",
+								"nearest"
+							],
+							"query": [
+								{
+									"key": "longitude",
+									"value": "40.703090"
+								},
+								{
+									"key": "latitude",
+									"value": "-73.592870"
+								},
+								{
+									"key": "numberOfStores",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2023 21:24:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"4a06103e-52c1-45ef-87e4-90a32cd56e4f\",\n        \"county\": \"Nassau\",\n        \"licenseNumber\": 748065,\n        \"establishmentType\": \"JAC\",\n        \"entityName\": \"CHAWLA BALBIR S\",\n        \"dbaName\": \"7-ELEVEN STORE #38405A\",\n        \"streetNumber\": \"644\",\n        \"streetName\": \"JERUSALEM AVE\",\n        \"city\": \"UNIONDALE\",\n        \"stateAbbreviation\": \"NY\",\n        \"zipCode\": 11553,\n        \"squareFootage\": 0,\n        \"latitude\": -73.593512,\n        \"longitude\": 40.700668\n    },\n    {\n        \"id\": \"d4988adc-f1a8-4d5a-9da2-812392920a78\",\n        \"county\": \"Nassau\",\n        \"licenseNumber\": 281156,\n        \"establishmentType\": \"JAC\",\n        \"entityName\": \"R&S DELI&GROCERY INC\",\n        \"dbaName\": \"QUICK PICK DELI&GROCERY\",\n        \"streetNumber\": \"416\",\n        \"streetName\": \"UNIONDALE AVE\",\n        \"city\": \"UNIONDALE\",\n        \"stateAbbreviation\": \"NY\",\n        \"zipCode\": 11553,\n        \"squareFootage\": 1000,\n        \"latitude\": -73.592689,\n        \"longitude\": 40.705285\n    },\n    {\n        \"id\": \"6eccaf20-1c76-4d9d-9efb-8d95c54cd172\",\n        \"county\": \"Nassau\",\n        \"licenseNumber\": 282561,\n        \"establishmentType\": \"JAC\",\n        \"entityName\": \"J&E MEAT CORP\",\n        \"dbaName\": \"C TOWN\",\n        \"streetNumber\": \"565\",\n        \"streetName\": \"UNIONDALE AVE\",\n        \"city\": \"UNIONDALE\",\n        \"stateAbbreviation\": \"NY\",\n        \"zipCode\": 11553,\n        \"squareFootage\": 20000,\n        \"latitude\": -73.593058,\n        \"longitude\": 40.701163\n    },\n    {\n        \"id\": \"476c0894-cfae-41fb-9549-6e89e066529f\",\n        \"county\": \"Nassau\",\n        \"licenseNumber\": 743724,\n        \"establishmentType\": \"A\",\n        \"entityName\": \"KT SEAFOOD DEPOT INC\",\n        \"dbaName\": \"KT SEAFOOD DEPOT\",\n        \"streetNumber\": \"502\",\n        \"streetName\": \"UNIONDALE AVE\",\n        \"city\": \"UNIONDALE\",\n        \"stateAbbreviation\": \"NY\",\n        \"zipCode\": 11553,\n        \"squareFootage\": 550,\n        \"latitude\": -73.592877,\n        \"longitude\": 40.702988\n    },\n    {\n        \"id\": \"1f3a67d6-c1b6-458c-886d-87369f998d50\",\n        \"county\": \"Nassau\",\n        \"licenseNumber\": 729285,\n        \"establishmentType\": \"A\",\n        \"entityName\": \"HIM ALONE AFRICAN MARKET LTD\",\n        \"dbaName\": \"HIM ALONE AFRICAN MKT\",\n        \"streetNumber\": \"494\",\n        \"streetName\": \"UNIONDALE AVE\",\n        \"city\": \"UNIONDALE\",\n        \"stateAbbreviation\": \"NY\",\n        \"zipCode\": 11553,\n        \"squareFootage\": 1500,\n        \"latitude\": -73.592868,\n        \"longitude\": 40.703088\n    }\n]"
+				}
+			]
+		}
+	]
+}
