@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface StoreRepository extends JpaRepository<Store, UUID> {
 
     Page<Store> findByEntityNameContainingOrStreetNameContaining(String entityName, String streetName, Pageable pageable);
+
 }

@@ -1,5 +1,8 @@
 package com.retail_food_stores.ws.service;
 
+import com.harium.storage.kdtree.KDTree;
+import com.harium.storage.kdtree.KeyDuplicateException;
+import com.harium.storage.kdtree.KeySizeException;
 import com.retail_food_stores.ws.model.EstablishmentType;
 import com.retail_food_stores.ws.model.Store;
 import com.retail_food_stores.ws.repository.StoreRepository;
@@ -20,7 +23,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -53,6 +58,40 @@ public class StoreServiceImpl implements StoreService {
         log.info("Called method for getting stores by filter");
         return storeRepository.findByEntityNameContainingOrStreetNameContaining(filter, filter, pageable);
     }
+
+    @Override
+    public List<Store> nearest(Double longitude, Double latitude) {
+        List<Store> items = storeRepository.findAll();
+        Set<String> insertedKeys = new HashSet<>();
+        KDTree kdTree = new KDTree(2, 1000L);
+
+        for (Store location : items) {
+            if (location.getLongitude() == null || location.getLatitude() == null) {
+                continue;
+            }
+            double[] point = { location.getLongitude(), location.getLatitude() };
+            String key = point[0] + "," + point[1];
+
+            if (!insertedKeys.contains(key)) {
+                try {
+                    kdTree.insert(point, location);
+                } catch (KeySizeException | KeyDuplicateException e) {
+                    throw new RuntimeException(e);
+                }
+                insertedKeys.add(key);
+            }
+        }
+        double[] query = { longitude, latitude };
+        int k = 10;
+        List<Store> neighbors = new ArrayList<>();
+        try {
+             neighbors = kdTree.nearest(query, k);
+        } catch (KeySizeException e) {
+            throw new RuntimeException(e);
+        }
+        return neighbors;
+    }
+
 
     private List<Store> loadData(InputStream inputStream) {
         BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));

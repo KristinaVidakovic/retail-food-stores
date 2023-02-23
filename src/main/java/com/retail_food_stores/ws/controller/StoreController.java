@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 @RestController
 public class StoreController {
 
@@ -35,4 +37,12 @@ public class StoreController {
     public ResponseEntity<Page<Store>> filter (@RequestParam String filter, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(storeService.filter(filter, pageable));
     }
+
+
+    @GetMapping("/nearest")
+    public ResponseEntity<List<Store>> getNearestLocation(@RequestParam("longitude") Double longitude, @RequestParam("latitude") Double latitude) {
+        return ResponseEntity.status(HttpStatus.OK).body(storeService.nearest(longitude, latitude));
+
+    }
+
 }
