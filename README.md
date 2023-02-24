@@ -15,9 +15,9 @@
 
 ### :file_folder: Database used ➡️ **PostgreSQL**
 
-####  Value for **DATABASE** variable is your database url 
+####  Value for *DATABASE* variable is your database url 
 
-e.g. jdbc:postgresql://{hostname}:{port}/{db_name}?user={db_user}&password={db_pass}
+**e.g.** *jdbc:postgresql://{hostname}:{port}/{db_name}?user={db_user}&password={db_pass}*
 
 #### :information_source: 
 
