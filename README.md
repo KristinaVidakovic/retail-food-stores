@@ -19,8 +19,8 @@
 
 **e.g.** *jdbc:postgresql://{hostname}:{port}/{db_name}?user={db_user}&password={db_pass}*
 
+#### :hotsprings: Framework used ➡️ **Spring Boot**
+
 #### :information_source: 
 
 In root folder you can find postman collection with examples of API calls
-
-#### :hotsprings: Framework used ➡️ **Spring Boot**
