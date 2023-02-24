@@ -22,3 +22,5 @@
 #### :information_source: 
 
 In root folder you can find postman collection with examples of API calls
+
+#### :hotsprings: Framework used ➡️ **Spring Boot**
