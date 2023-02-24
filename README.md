@@ -13,7 +13,7 @@
 | 🔵 *GET*                  | */reatil-food-stores/nearest* | Method for getting n nearest stores <br> by provided longitude and latitude. <br> - HttpStatus **OK** <br> ➡️ Response : ***List of Stores JSON objects*** <br> 1️⃣ Successfully returned data by longitude and latitude.                                                                                                                                                                                                                    |
 | :large_blue_circle: *GET* | */retail-food-stores/health*  | Method for checking status of the service.                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-### :file_folder: Database used ➡️ **PostgreSQL**
+#### :file_folder: Database used ➡️ **PostgreSQL**
 
 ####  Value for *DATABASE* variable is your database url 
 
