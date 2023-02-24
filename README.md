@@ -11,9 +11,14 @@
 | :green_circle: *POST*     | */retail-food-stores/load*    | Method for loading data from provided csv file. <br> - HttpStatus **OK** ➡️ Response : ***Response Message JSON object*** <br> 1️⃣ Successfully loaded data. <br> - HttpStatus **BAD REQUEST** ➡️ Response : ***Unsupported File Exception JSON object*** <br> 1️⃣ Unsupported file provided. <br> - HttpStatus **EXPECTATION FAILED** ➡️ Response : ***Unsupported File Exception JSON object*** <br> 1️⃣ Exception message. |
 | :large_blue_circle: *GET* | */retail-food-stores/filter*  | Method for getting stores by provided filter. <br> - HttpStatus **OK** ➡️ Response : ***List of Stores JSON objects with pagination*** <br> 1️⃣ Found stores. <br> - HttpStatus **NO CONTENT** ➡️ Response : NO BODY                                                                                                                                                                                                          |
 | 🔵 *GET*                  | */reatil-food-stores/nearest* | Method for getting n nearest stores by provided longitude and latitude. <br> - HttpStatus **OK** ➡️ Response : ***List of Stores JSON objects*** <br> 1️⃣ Successfully returned data by longitude and latitude.                                                                                                                                                                                                               |
+| :large_blue_circle: *GET* | */retail-food-stores/health*  | Method for checking status of the service.                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ### :file_folder: Database used ➡️ **PostgreSQL**
 
-####  Value for **DATABASE** variable is your database url jdbc:postgresql://{hostname}:{port}/{db_name}?user={db_user}&password={db_pass}
+####  Value for **DATABASE** variable is your database url 
 
-#### :information_source: In root folder you can find postman collection 
+e.g. jdbc:postgresql://{hostname}:{port}/{db_name}?user={db_user}&password={db_pass}
+
+#### :information_source: 
+
+In root folder you can find postman collection with examples of API calls
