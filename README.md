@@ -25,4 +25,4 @@
 
 #### :information_source: 
 
-In the root folder you can find postman collection with examples of API calls
+In the root folder you can find the postman collection with examples of API calls
