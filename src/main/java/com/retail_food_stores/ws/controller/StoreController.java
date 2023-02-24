@@ -45,7 +45,7 @@ public class StoreController {
                     content = { @Content(mediaType = "application/json",
                         schema = @Schema(implementation = ResponseMessage.class)) })
     })
-    @PostMapping("/upload")
+    @PostMapping("/load")
     public ResponseEntity<?> loadAndSave (
             @Parameter(description = "CSV file with data to be stored") @RequestParam MultipartFile csvFile) {
 

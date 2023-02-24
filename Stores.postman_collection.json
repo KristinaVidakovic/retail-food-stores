@@ -22,7 +22,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8090/retail-food-stores/upload",
+					"raw": "http://localhost:8090/retail-food-stores/load",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -30,7 +30,7 @@
 					"port": "8090",
 					"path": [
 						"retail-food-stores",
-						"upload"
+						"load"
 					]
 				}
 			},
@@ -51,7 +51,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8090/retail-food-stores/upload",
+							"raw": "http://localhost:8090/retail-food-stores/load",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -59,7 +59,7 @@
 							"port": "8090",
 							"path": [
 								"retail-food-stores",
-								"upload"
+								"load"
 							]
 						}
 					},
@@ -107,7 +107,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8090/retail-food-stores/upload",
+							"raw": "http://localhost:8090/retail-food-stores/load",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -115,7 +115,7 @@
 							"port": "8090",
 							"path": [
 								"retail-food-stores",
-								"upload"
+								"load"
 							]
 						}
 					},
