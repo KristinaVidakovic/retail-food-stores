@@ -2,6 +2,8 @@
 
 📗 [Swagger specification](http://localhost:8090/retail-food-stores/swagger-ui/index.html)
 
+*You need to run the project locally to be able to see swagger specification*
+
 ### 🗃️ List of implemented methods:
 
 #### :department_store: Store Controller
@@ -23,4 +25,4 @@
 
 #### :information_source: 
 
-In root folder you can find postman collection with examples of API calls
+In the root folder you can find postman collection with examples of API calls
