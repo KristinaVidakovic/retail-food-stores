@@ -33,7 +33,7 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    @Operation(summary = "Load csv file and save data in database")
+    @Operation(summary = "Load csv files and save data in database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully loaded data",
                     content = { @Content(mediaType = "application/json",
@@ -47,10 +47,10 @@ public class StoreController {
     })
     @PostMapping("/load")
     public ResponseEntity<?> loadAndSave (
-            @Parameter(description = "CSV file with data to be stored") @RequestParam MultipartFile csvFile) {
+            @Parameter(description = "CSV files with data to be stored") @RequestParam List<MultipartFile> csvFiles) {
 
         try {
-            storeService.save(csvFile);
+            storeService.save(csvFiles);
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(HttpStatus.OK, "Successfully loaded data"));
         } catch (UnsupportedFileException e) {
             return ResponseEntity.status(UnsupportedFileException.HTTP_STATUS).body(e);

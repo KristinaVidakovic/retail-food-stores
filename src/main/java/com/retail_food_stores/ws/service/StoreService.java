@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface StoreService {
 
-    void save(MultipartFile csvFile);
+    void save(List<MultipartFile> csvFiles);
 
     Page<Store> filter(String filter, Pageable pageable);
 
