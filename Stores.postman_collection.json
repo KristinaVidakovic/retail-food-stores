@@ -15,7 +15,7 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "csvFile",
+							"key": "csvFiles",
 							"type": "file",
 							"src": "/Users/vidakovic/Desktop/Retail Food Stores in New York City (1).csv"
 						}
