@@ -64,7 +64,7 @@ public class StoreController {
             @ApiResponse(responseCode = "200", description = "Successfully returned data by filter",
                 content = { @Content(mediaType = "application/json",
                     schema = @Schema(implementation = Page.class)) }),
-            @ApiResponse(responseCode = "201", description = "No data found for provided filter")
+            @ApiResponse(responseCode = "204", description = "No data found for provided filter")
     })
     @GetMapping("/filter")
     public ResponseEntity<?> getByFilter (
