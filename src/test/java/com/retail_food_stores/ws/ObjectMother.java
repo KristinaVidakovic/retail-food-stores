@@ -5,6 +5,8 @@ import com.retail_food_stores.ws.model.Store;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.UUID;
 
 public class ObjectMother {
@@ -37,5 +39,13 @@ public class ObjectMother {
                 "test.txt",
                 MediaType.TEXT_PLAIN_VALUE,
                 "test data".getBytes());
+    }
+
+    public static InputStream createInputStream() {
+        return new ByteArrayInputStream("county,licenseNumber,establishmentType,entityName,dbaName,streetNumber,streetName,city,stateAbbreviation,zipCode,squareFootage,latitude,longitude\nAL,11,A,Store A,dba,1,name,LL,NY,1111,1234,22.2345,11.3456".getBytes());
+    }
+
+    public static InputStream createMalformedInputStream() {
+        return new ByteArrayInputStream("county,licenseNumber,establishmentType,entityName,dbaName,streetNumber,streetName,city,stateAbbreviation,zipCode,squareFootage,latitude,longitude\nAL,11,A,Store A,dba,1,name,LL,NY,1111,1234,22.2345,11.3456\n2".getBytes());
     }
 }

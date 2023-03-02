@@ -111,7 +111,7 @@ public class StoreServiceImpl implements StoreService {
         return neighbors;
     }
 
-    private List<Store> loadData(InputStream inputStream) throws IOException {
+    List<Store> loadData(InputStream inputStream) throws IOException {
         try (CSVReader csvReader = new CSVReaderBuilder(new InputStreamReader(inputStream, StandardCharsets.UTF_8))
                 .withSkipLines(1)
                 .build()) {
